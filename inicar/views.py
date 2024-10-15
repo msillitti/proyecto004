@@ -1,10 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import Template, Context
 
 def primera_vista(request):
-    retrun HttpResponse("Primera Prueba de Vista")
+    return HttpResponse("Primera Prueba de Vista")
 
 def home(request):
-    return HttpResponse(<h1 style="text-align:center;font-family:Garamond;color:#000000;">Matias Sillitti Primera Vista</h1>)
+    return HttpResponse("Pagina inicio")
 
-# Create your views her
+def vista2(requested, dato):
+    datoURL = dato
+    return HttpResponse(f"El dato del URL es : {datoURL} ")
+
+def template_1(request):
+    # return HttpResponse("TEMPLATE_1")
+    template_1_file = open(r".venv\templates\template_1.html")
+    template = Template(template_1_file.read())
+    template_1_file.close()
+    contexto = Context()
+    render_template = template.render(contexto)
+    return HttpResponse(render_template)
